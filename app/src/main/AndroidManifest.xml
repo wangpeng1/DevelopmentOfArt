@@ -2,7 +2,20 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="qingfengmy.developmentofart">
 
+    <permission android:name="qingfengmy.developmentofart.book" />
+    <permission
+        android:name="qingfengmy.developmentofart.provider"
+        android:protectionLevel="normal" />
+
+    <uses-permission android:name="qingfengmy.developmentofart.provider" />
+    <uses-permission android:name="qingfengmy.developmentofart.book" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
+        android:name=".APP"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -15,6 +28,85 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="._1activity.LifeCycleActivity" />
+        <activity android:name="._1activity.LaunchMode1Activity">
+            <intent-filter>
+                <action android:name="qingfengmy.ali" />
+                <action android:name="qingfengmy.tx" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+
+                <data
+                    android:host="qingfengmy"
+                    android:mimeType="images/*"
+                    android:scheme="file" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="._2activity.SecondActivity"
+            android:process=":remote" />
+        <activity
+            android:name="._2activity.ThirdActivity"
+            android:process="qingfengmy.developmentofart.remote" />
+        <activity
+            android:name="._2activity.BookActivity"
+            android:process="qingfengmy.remote">
+            <intent-filter>
+                <action android:name="qingfengmy.ali.ali" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name="._2activity.BookService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="qingfengmy.developmentofart.bookService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+        <service android:name="._2activity.Manual.ManualService">
+            <intent-filter>
+                <action android:name="qingfengmy.developmentofart.ManualService" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </service>
+
+        <activity android:name="._2activity.Manual.ManualActivity" />
+
+        <service
+            android:name="._2activity.Messenger.MessengerService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":remote" />
+
+        <activity android:name="._2activity.Messenger.MessengerActivity" />
+
+        <provider
+            android:name="._2activity.ContentProvider.BookProvider"
+            android:authorities="qingfengmy.developmentofart.bookprovider"
+            android:exported="true"
+            android:permission="qingfengmy.developmentofart.provider"
+            android:process=":provider" />
+
+        <activity android:name="._2activity.ContentProvider.ContentProviderActivity" />
+
+        <service
+            android:name="._2activity.socket.SocketService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name="._2activity.socket.SocketActivity" />
+
+        <service
+            android:name="._2activity.binderpool.PoolService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name="._2activity.binderpool.PoolActivity"></activity>
     </application>
 
 </manifest>
